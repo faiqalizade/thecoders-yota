@@ -9,15 +9,14 @@
             </div>
             <div class="modal-body">
                 <form method="post">
-                    <input id="comment-parent-id" type="hidden" name="parent_id" value="0">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="username">
+                        <input type="text" class="form-control" id="username-input" name="username" placeholder="username">
                     </div>
 
                     <div class="form-group">
                         <label for="comment">Comment</label>
-                        <textarea class="form-control" id="comment" rows="3" name="comment"></textarea>
+                        <textarea class="form-control" id="comment-input" rows="3" name="comment"></textarea>
                     </div>
                 </form>
             </div>

@@ -35,6 +35,45 @@ class MainController extends Controller
 
         return [
             'success' => true,
+            'item' => $comment
+        ];
+    }
+
+    public function delete($id)
+    {
+        $comment = Comment::load($id);
+        if ($comment->id == 0) {
+            http_response_code(404);
+            return [
+                'success' => false
+            ];
+        }
+
+        $comment->delete();
+        return [
+            'success' => true,
+        ];
+    }
+
+    public function update($id)
+    {
+        $comment = Comment::load($id);
+
+        if ($comment->id == 0) {
+            http_response_code(404);
+            return [
+                'success' => false
+            ];
+        }
+
+
+        $comment->username = request()->username;
+        $comment->text = htmlspecialchars(request()->comment);
+        $comment->save();
+
+        return [
+            'success' => true,
+            'item' => $comment
         ];
     }
 }

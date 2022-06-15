@@ -31,6 +31,29 @@ class Route
         return new static();
     }
 
+
+    public static function delete($path, $argument)
+    {
+        if (!$path) {
+            return null;
+        }
+        $path = self::validateRoute($path);
+        self::$route = $path;
+        self::$routes['DELETE'][$path] = $argument;
+        return new static();
+    }
+
+    public static function put($path, $argument)
+    {
+        if (!$path) {
+            return null;
+        }
+        $path = self::validateRoute($path);
+        self::$route = $path;
+        self::$routes['PUT'][$path] = $argument;
+        return new static();
+    }
+
     public static function getRoutes(): array
     {
         return self::$routes;

@@ -37,6 +37,7 @@ class Application
         $method = $route['route'][1];
         $arguments = $route['arguments'];
         if (!method_exists($controller, $method)) {
+            http_response_code(500);
             die("Method <b>$method</b> is not found in <b>".get_class($controller)."</b>");
         }
         $response = call_user_func_array([$controller, $method], $arguments);

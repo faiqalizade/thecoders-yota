@@ -22,7 +22,7 @@
                     </ul>
 
                     <div class="text-end">
-                        <button type="button" data-toggle="modal" data-target="#addComment" class="btn btn-outline-light me-2">Add Comment</button>
+                        <button type="button" id="header-add-comment-btn" data-toggle="modal" data-target="#addComment" class="btn btn-outline-light me-2">Add Comment</button>
                     </div>
                 </div>
             </div>
@@ -33,6 +33,7 @@
         </div>
 
         @include('components.modals.add-comment')
+        @include('components.comment-item')
         <div class="footer">
 
         </div>

@@ -9,7 +9,13 @@ class Request extends stdClass
 
     public function __construct()
     {
-        $this->mergedRequest = $_GET + $_POST;
+        $jsonBody = [];
+        foreach (explode('&', file_get_contents("php://input")) as $couple) {
+            list ($key, $val) = explode('=', $couple);
+            $jsonBody[$key] = $val;
+        }
+
+        $this->mergedRequest = $_GET + $_POST + $jsonBody;
     }
 
     public function __get(string $name)

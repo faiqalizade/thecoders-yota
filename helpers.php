@@ -42,12 +42,16 @@ function asset($path)
     return $path;
 }
 
-function getCommentChildHTML($comment, $level = 1)
+function renderCommentsTree($comments, $level = 1): string
 {
-    foreach ($comment['children'] as $child) {
-        echo View::make('components.children', [
-            'item' => $child,
+    $_return = '';
+
+    foreach ($comments as $comment) {
+        $_return .= View::make('components.comments', [
+            'item' => $comment,
             'level' => $level
         ]);
     }
+
+    return $_return;
 }
