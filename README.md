@@ -1,2 +1,0 @@
-# Loop Framework
-by Loop
