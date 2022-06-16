@@ -35,7 +35,7 @@ class MainController extends Controller
 
         return [
             'success' => true,
-            'item' => $comment
+            'items' => Comment::getCommentTree()
         ];
     }
 
@@ -52,6 +52,7 @@ class MainController extends Controller
         $comment->delete();
         return [
             'success' => true,
+            'items' => Comment::getCommentTree()
         ];
     }
 
@@ -73,7 +74,7 @@ class MainController extends Controller
 
         return [
             'success' => true,
-            'item' => $comment
+            'items' => Comment::getCommentTree()
         ];
     }
 }

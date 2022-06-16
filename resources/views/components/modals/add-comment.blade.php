@@ -11,12 +11,12 @@
                 <form method="post">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username-input" name="username" placeholder="username">
+                        <input v-model="username" type="text" class="form-control" id="username-input" name="username" placeholder="username">
                     </div>
 
                     <div class="form-group">
                         <label for="comment">Comment</label>
-                        <textarea class="form-control" id="comment-input" rows="3" name="comment"></textarea>
+                        <textarea v-model="comment" class="form-control" id="comment-input" rows="3" name="comment"></textarea>
                     </div>
                 </form>
             </div>
