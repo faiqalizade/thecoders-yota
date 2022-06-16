@@ -33,7 +33,8 @@ $("#add-comment-submit-btn").click(function () {
     const comment = $("#comment-input").val();
     const data = {
         username,
-        comment
+        comment,
+        parentId
     };
 
     if (!isEdit) {

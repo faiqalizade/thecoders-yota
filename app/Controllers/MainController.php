@@ -28,9 +28,9 @@ class MainController extends Controller
     {
         $comment = new Comment();
         $comment->username = request()->username;
-        $comment->text = htmlspecialchars(request()->username);
+        $comment->text = htmlspecialchars(request()->comment);
         $comment->created_at = date("Y-m-d H:i:s");
-        $comment->parent_id = request()->parentId ?? 0;
+        $comment->parent_id = request()->parentId > 0 ?: null;
         $comment->save();
 
         return [

@@ -54,11 +54,21 @@ class Model extends \stdClass implements \JsonSerializable
     public static function __callStatic($pluginName, $params)
     {
         array_unshift($params, static::$tableName);
-        if (R::$pluginName(...$params) instanceof OODBBean) {
-            static::$bean = R::$pluginName(...$params);
+        $result = R::$pluginName(...$params);
+        if ($result instanceof OODBBean) {
+            static::$bean = $result;
             return new static();
         }
 
-        return R::$pluginName(...$params);
+        if (is_array($result)) {
+            $_return = [];
+            foreach ($result as $bean) {
+                $properties = $bean->getProperties();
+                $_return[$properties['id']] = $properties;
+            }
+            $result = $_return;
+        }
+
+        return $result;
     }
 }

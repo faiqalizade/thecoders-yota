@@ -8,14 +8,14 @@ class Comment extends Model
 
     public static function getCommentTree()
     {
-        $comments = json_decode(json_encode(self::findAll()), true);
+        $comments = self::findAll();
 
         $new = [];
         foreach ($comments as $comment) {
             $new[$comment['parent_id']][] = $comment;
         }
 
-        return self::createTree($new, $new[0]);
+        return self::createTree($new, $new[array_keys($new)[0]]);
     }
 
     public static function createTree(&$list, $parent)
