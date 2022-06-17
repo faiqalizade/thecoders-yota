@@ -11,17 +11,13 @@ export default {
     }),
     methods: {
         deleteItem: function (id) {
-            $.ajax({
-                url: "/api/comments/" + id,
-                method: "DELETE",
-                success: (response) => {
-                    if (response.success) {
-                        this.updateItems(response.items)
-                    } else {
-                        alert(response.message);
-                    }
+            axios.delete("/api/comments/" + id).then(response => {
+                if (response.data.success) {
+                    this.updateItems(response.data.items)
+                } else {
+                    alert(response.data.message);
                 }
-            });
+            })
         },
         updateItems: function (items) {
             this.$emit('updateItems', items);

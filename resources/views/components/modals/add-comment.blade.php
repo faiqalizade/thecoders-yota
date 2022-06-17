@@ -21,8 +21,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="add-comment-submit-btn">Add</button>
+                <button type="button" @click="clearData" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" @click="sendComment" data-dismiss="modal" class="btn btn-primary">Add</button>
             </div>
         </div>
     </div>

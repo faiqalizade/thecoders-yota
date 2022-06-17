@@ -15,9 +15,19 @@ createApp({
     created: function () {
         this.items = {...window.commentItems};
     },
+    methods: {
+        updateItems: function (items) {
+            this.items = {...items};
+        },
 
-    mounted: function () {
-        $("#add-comment-submit-btn").click(() => {
+        clearData: function () {
+            this.parentId = 0;
+            this.isEdit = false;
+            this.username = null;
+            this.comment = null;
+        },
+
+        sendComment: function () {
             const username = this.username;
             const comment = this.comment;
             const data = {
@@ -26,43 +36,17 @@ createApp({
                 parentId: this.parentId
             };
 
-            if (!this.isEdit) {
-                $.ajax({
-                    url: "/api/comments",
-                    method: "POST",
-                    data,
-                    success: (response) => {
-                        $("#addComment").modal("hide");
-                        if (response.success) {
-                            this.items = {...response.items};
-                        }
-                    }
-                });
-            } else {
-                $.ajax({
-                    url: "/api/comments/" + this.editId,
-                    method: "PUT",
-                    data,
-                    success: (response) => {
-                        $("#addComment").modal("hide");
-                        if (response.success) {
-                            this.items = {...response.items};
-                        }
-                    }
-                });
-            }
-        });
-
-        $('#addComment').on('hidden.bs.modal', (event) => {
-            this.parentId = 0;
-            this.isEdit = false;
-            this.username = null;
-            this.comment = null;
-        });
-    },
-    methods: {
-        updateItems: function (items) {
-            this.items = {...items};
+            let url = this.isEdit ? "/api/comments/" + this.editId : "/api/comments";
+            axios({
+                method: this.isEdit ? 'PUT' : 'POST',
+                url,
+                data
+            }).then(response => {
+                if (response.data.success) {
+                    this.updateItems(response.data.items);
+                    this.clearData();
+                }
+            });
         },
 
         setParentId: function (id) {

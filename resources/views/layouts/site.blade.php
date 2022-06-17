@@ -14,7 +14,7 @@
             <div class="content">
                 <header class="p-3 bg-dark text-white">
                     <div class="container">
-                        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <div class="d-flex flex-wrap align-items-center">
                             <a href="{{ route('home')}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none me-5">
                                 The Coders Commentator
                             </a>
@@ -24,7 +24,7 @@
                             </ul>
 
                             <div class="text-end">
-                                <button type="button" id="header-add-comment-btn" data-toggle="modal" data-target="#addComment" class="btn btn-outline-light me-2">Add Comment</button>
+                                <button type="button" @click="clearData" id="header-add-comment-btn" data-toggle="modal" data-target="#addComment" class="btn btn-outline-light me-2">Add Comment</button>
                             </div>
                         </div>
                     </div>
@@ -43,6 +43,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/axios.js')}}"></script>
     <script type="module" src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
